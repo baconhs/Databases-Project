@@ -1,0 +1,370 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" >
+    <head>
+        <meta charset="UTF-8"/>
+        <title>HY360 Project</title>
+        <link rel="stylesheet" href="css/bulma.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/app.js"></script>
+    </head>
+    <body>
+        <nav class="navbar" role="navigation" aria-label="main navigation">
+            <div class="navbar-brand">
+                <a class="home navbar-item">
+                    <strong>HY360-Project</strong>
+                </a>
+
+                <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navElements">
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                    <span aria-hidden="true"></span>
+                </a>
+            </div>
+
+            <div id="navElements" class="navbar-menu">
+                <div class="navbar-start">
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            Accounts
+                        </a>
+
+                        <div class="navbar-dropdown">
+                            <a class="new-account-button navbar-item">
+                                New Account
+                            </a>
+                            <a class="close-account-button navbar-item">
+                                Close Account
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            Queries
+                        </a>
+
+                        <div class="navbar-dropdown">
+                            <a class="buy-button navbar-item">
+                                Buy
+                            </a>
+                            <a class="pay-button navbar-item">
+                                Pay Debt
+                            </a>
+                            <a class="return-button navbar-item">
+                                Return
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            Info
+                        </a>
+
+                        <div class="navbar-dropdown">
+                            <a class="questions-button navbar-item">
+                                Questions
+                            </a>
+                            <a class="gu-button navbar-item">
+                                Good users
+                            </a>
+                            <a class="bu-button navbar-item">
+                                Bad users
+                            </a>
+                            <a class="mom-button navbar-item">
+                                Merchant of the month
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <button class="create-tables is-small button is-danger"><strong>Create Tables</strong></button>
+                            <button class="drop-tables is-small button is-danger"><strong>Drop All Tables</strong></button>
+                            <button class="fill-tables is-small button is-warning"><strong>Insert Sample Data</strong></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="container main">
+            <div class="box">
+                
+                <form class="initial-prompt">Please select an action from the navbar</form>
+                <form class="new-account" hidden>
+                    <h3 class="subtitle"><strong>New Account</strong></h3>
+                    <div class="field">
+                        <label class="label">Account Type</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="account-type">
+                                    <option>Individual</option>
+                                    <option>Merchant</option>
+                                    <option>Company</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Works for (for Individuals)</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Text input" name="works-for">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Username</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Text input" name="username" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Name</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Text input" name="name" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Commission (for Merchants)</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Number input" name="commission">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Account Expiration Date (for Individuals/Companies)</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="yyyy-mm-dd" name="account-expiration-date" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Credit Limit (for Individuals/Companies)</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Number input" name="credit-limit">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Credit Balance (for Individuals/Companies)</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Number input" name="credit-balance">
+                        </div>
+                    </div>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="new-account-submit button is-link">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <form class="close-account" hidden>
+                    <h3 class="subtitle"><strong>Close Account</strong></h3>
+                    <div class="field">
+                        <label class="label">Username</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Text input" name="username" required>
+                        </div>
+                    </div>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="close-account-submit button is-link">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <form class="buy" hidden>
+                    <h3 class="subtitle"><strong>Buy</strong></h3>
+                    <div class="field">
+                        <div class="field">
+                            <label class="label">Username</label>
+                            <div class="control">
+                                <input class="input" type="text" placeholder="Text input" name="username" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="checkbox">
+                            <input type="checkbox" name="asEmployee">
+                            Buy as employee
+                        </label>                        
+                    </div>
+                    <div class="field">
+                        <label class="label">Merchant Username</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Text input" name="merchant" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Amount</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Number input" name="amount" required>
+                        </div>
+                    </div>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="buy-submit button is-link">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <form class="pay" hidden>
+                    <h3 class="subtitle"><strong>Pay Debt</strong></h3>
+                    <div class="field">
+                        <label class="label">Account Type</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="account-type-2">
+                                    <option>Individual</option>
+                                    <option>Merchant</option>
+                                    <option>Employee</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Username</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Text input" name="username" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Amount</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Text input" name="amount" required>
+                        </div>
+                    </div>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="pay-submit button is-link">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <form class="return" hidden>
+                       <h3 class="subtitle"><strong>Return Product</strong></h3>
+                    <div class="field">
+                        <label class="label">Account Type</label>
+                        <div class="control">
+                            <div class="select">
+                                <select name="account-type-3">
+                                    <option>Individual</option>
+                                    <option>Employee</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Username</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Text input" name="username" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Merchant Username</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Text input" name="merchant" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Amount</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="Text input" name="amount" required>
+                        </div>
+                    </div>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="pay-submit button is-link">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <form class="questions question-1" hidden>
+                    <h3 class="subtitle"><strong>Get transactions in a certain time period</strong></h3>
+                    <div class="question-1-content"></div>
+                    <div class="field">
+                        <label class="label">Date 1</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="yyyy-mm-dd" name="date1" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Date 2</label>
+                        <div class="control">
+                            <input class="input" type="text" placeholder="yyyy-mm-dd" name="date2" required>
+                        </div>
+                    </div>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="pay-submit button is-link">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <form class="questions question-2" hidden>
+                    <h3 class="subtitle"><strong>Fetch company transactions of a certain employee</strong></h3>
+                    <div class="question-2-content"></div>
+                    <div class="field">
+                        <label class="label">Company</label>
+                        <div class="control">
+                            <input class="input" type="text" name="username" required>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Employee</label>
+                        <div class="control">
+                            <input class="input" type="text" name="employee" required>
+                        </div>
+                    </div>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="pay-submit button is-link">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <form class="questions question-3" hidden>
+                     <h3 class="subtitle"><strong>Fetch all company transactions</strong></h3>
+                    <div class="question-3-content"></div>
+                    <div class="field">
+                        <label class="label">Company</label>
+                        <div class="control">
+                            <input class="input" type="text" name="username" required>
+                        </div>
+                    </div>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="pay-submit button is-link">Submit</button>
+                        </div>
+                    </div>
+                </form>
+                <form class="gu" hidden>
+                    <h3 class="subtitle"><strong>Good Users</strong></h3>
+                    <div class="good-users"></div>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="pay-submit button is-link">Get Info</button>
+                        </div>
+                    </div>
+                </form>
+                <form class="bu" hidden>
+                    <h3 class="subtitle"><strong>Bad users</strong></h3>
+                    <div class="bad-users"></div>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="pay-submit button is-link">Get Info</button>
+                        </div>
+                    </div>
+                </form>
+                <form class="mom" hidden>
+                    <h3 class="subtitle"><strong>Merchant of the month</strong></h3>
+                    <div class="motm"></div>
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="pay-submit button is-link">Get Info</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="modal">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="notification is-info modal-text has-text-centered"></div>
+            </div>
+            <button class="modal-close is-large" aria-label="close"></button>
+        </div>
+    </body>
+</html>
