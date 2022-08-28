@@ -1,7 +1,6 @@
-To execute:
+You need to have docker installed on your device.To execute:
 
-1. Have XAMPP running with mySQL database open
-2. Execute `./mvnw spring-boot:run`
-3. The frontend is on `localhost:8082`
-4. The sql tables are on `localhost/phpmyadmin`
-
+1. Execute `docker-compose up`
+2. The frontend is on `localhost:8082`
+3. To access the database in phpmyadmin, go to `localhost:8080`
+4. The credentials are: user:`user` and password: `pass`

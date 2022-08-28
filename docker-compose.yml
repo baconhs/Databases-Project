@@ -1,0 +1,35 @@
+version: '3'
+ 
+services:
+  
+  springboot:
+    build: .
+    ports:
+      - 8082:8082
+
+  CCC-mysql:
+    image: mysql:5.7
+    container_name: CCC-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: pass
+      MYSQL_DATABASE: test
+      MYSQL_USER: user
+      MYSQL_PASSWORD: userpass123
+    ports:
+      - "3306:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+  CCC-phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: CCC-phpmyadmin
+    depends_on:
+      - CCC-mysql
+    environment:
+      PMA_HOST: CCC-mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8081:80
+volumes:
+  dbdata:
